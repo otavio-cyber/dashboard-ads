@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Dashboard de Contas - FactorIA</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background: #0a1929;
@@ -14,107 +20,328 @@
       padding: 20px;
       color: #fff;
     }
+
     .header {
       max-width: 1400px;
       margin: 0 auto 40px;
-      display: flex; align-items: center; justify-content: space-between;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       padding-bottom: 20px;
-      border-bottom: 1px solid rgba(0,255,135,.2);
+      border-bottom: 1px solid rgba(0, 255, 135, .2);
     }
-    .logo { font-size: 1.8em; font-weight: bold; color: #00ff87; display: flex; align-items: center; gap: 10px; }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #00ff87;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .logo-icon {
-      width: 40px; height: 40px; border-radius: 8px;
-      background: linear-gradient(135deg,#00ff87 0%,#00d9ff 100%);
-      display:flex; align-items:center; justify-content:center; color:#0a1929; font-weight:700;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #00ff87 0%, #00d9ff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0a1929;
+      font-weight: 700;
     }
-    h1 { text-align:center; color:#fff; margin-bottom:10px; font-size:2.5em; font-weight:600; }
-    .subtitle { text-align:center; color:#00ff87; margin-bottom:40px; font-size:1.1em; opacity:.9; }
-    .container { max-width:1400px; margin:0 auto; }
-    .section { margin-bottom:50px; }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 10px;
+      font-size: 2.5em;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #00ff87;
+      margin-bottom: 40px;
+      font-size: 1.1em;
+      opacity: .9;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
     .section-header {
-      display:flex; align-items:center; gap:15px; margin-bottom:25px;
-      padding:15px 20px; background: rgba(0,255,135,.05);
-      border-left:4px solid #00ff87; border-radius:8px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      padding: 15px 20px;
+      background: rgba(0, 255, 135, .05);
+      border-left: 4px solid #00ff87;
+      border-radius: 8px;
     }
-    .section-title { font-size:1.8em; font-weight:600; color:#00ff87; }
+
+    .section-title {
+      font-size: 1.8em;
+      font-weight: 600;
+      color: #00ff87;
+    }
+
     .section-badge {
-      background: linear-gradient(135deg,#00ff87 0%,#00d9ff 100%);
-      color:#0a1929; padding:4px 12px; border-radius:20px; font-size:.85em; font-weight:600;
+      background: linear-gradient(135deg, #00ff87 0%, #00d9ff 100%);
+      color: #0a1929;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: .85em;
+      font-weight: 600;
     }
-    .agencies { display:grid; grid-template-columns:repeat(auto-fit,minmax(600px,1fr)); gap:30px; margin-bottom:30px; }
+
+    .agencies {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
     .agency {
-      background: rgba(255,255,255,.03); border:1px solid rgba(0,255,135,.15);
-      border-radius:15px; padding:30px; backdrop-filter: blur(10px); transition: all .3s ease;
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(0, 255, 135, .15);
+      border-radius: 15px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      transition: all .3s ease;
     }
-    .agency:hover { border-color: rgba(0,255,135,.4); transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0,255,135,.1); }
-    .agency-header { display:flex; align-items:center; gap:12px; margin-bottom:25px; padding-bottom:15px; border-bottom:2px solid rgba(0,255,135,.2); }
-    .agency-icon { width:45px; height:45px; background: linear-gradient(135deg,#00ff87 0%,#00d9ff 100%); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.5em; }
-    .agency-name { font-size:1.6em; font-weight:700; color:#fff; }
-    .platform { margin-bottom:30px; }
-    .platform:last-child { margin-bottom:0; }
+
+    .agency:hover {
+      border-color: rgba(0, 255, 135, .4);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 40px rgba(0, 255, 135, .1);
+    }
+
+    .agency-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid rgba(0, 255, 135, .2);
+    }
+
+    .agency-icon {
+      width: 45px;
+      height: 45px;
+      background: linear-gradient(135deg, #00ff87 0%, #00d9ff 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+    }
+
+    .agency-name {
+      font-size: 1.6em;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .platform {
+      margin-bottom: 30px;
+    }
+
+    .platform:last-child {
+      margin-bottom: 0;
+    }
+
     .platform-title {
-      display:flex; align-items:center; gap:10px; font-size:1.2em; font-weight:600; color:#00ff87; margin-bottom:15px; padding:10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2em;
+      font-weight: 600;
+      color: #00ff87;
+      margin-bottom: 15px;
+      padding: 10px 0;
     }
-    .platform-icon { width:28px; height:28px; }
-    .clients { display:grid; gap:10px; }
+
+    .platform-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .clients {
+      display: grid;
+      gap: 10px;
+    }
 
     /* Card click and finance button */
     .client-card {
       position: relative;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255, 255, 255, .05);
+      border: 1px solid rgba(255, 255, 255, .1);
       border-radius: 12px;
       padding: 16px 16px;
       transition: all .2s ease;
       cursor: pointer;
     }
+
     .client-card:hover {
-      background: rgba(0,255,135,.1);
+      background: rgba(0, 255, 135, .1);
       border-color: #00ff87;
-      box-shadow: 0 6px 22px rgba(0,255,135,.18);
+      box-shadow: 0 6px 22px rgba(0, 255, 135, .18);
       transform: translateX(4px);
     }
-    .client-name { font-weight:700; font-size:1.05em; margin-right:140px; }
+
+    .client-name {
+      font-weight: 700;
+      font-size: 1.05em;
+      margin-right: 140px;
+    }
+
     .finance-btn {
-      position: absolute; right: 14px; top: 14px;
+      position: absolute;
+      right: 14px;
+      top: 14px;
       background: #2a3542;
       color: #e8eef5;
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid rgba(255, 255, 255, .18);
       border-radius: 999px;
       padding: 8px 12px;
-      font-size: 12px; font-weight: 800; letter-spacing: .02em;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .02em;
       text-decoration: none;
       line-height: 1;
       pointer-events: auto;
     }
-    .finance-btn:hover { filter: brightness(1.1); }
-    .client-row { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+
+    .finance-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .client-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
 
     /* Personal accounts */
     .personal-accounts {
-      background: linear-gradient(135deg, rgba(0,255,135,.1) 0%, rgba(0,217,255,.1) 100%);
-      border: 1px solid rgba(0,255,135,.3); border-radius: 15px; padding: 30px; margin-bottom: 40px;
+      background: linear-gradient(135deg, rgba(0, 255, 135, .1) 0%, rgba(0, 217, 255, .1) 100%);
+      border: 1px solid rgba(0, 255, 135, .3);
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 40px;
     }
 
     /* Stats */
-    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
-    .stat-card { background: rgba(255,255,255,.03); border:1px solid rgba(0,255,135,.15); padding:25px; border-radius:12px; text-align:center; position:relative; overflow:hidden; transition:.3s; }
-    .stat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#00ff87 0%,#00d9ff 100%); transform:scaleX(0); transition:transform .3s; }
-    .stat-card:hover { border-color:#00ff87; transform: translateY(-3px); box-shadow:0 10px 30px rgba(0,255,135,.15); }
-    .stat-card:hover::before { transform: scaleX(1); }
-    .stat-number { font-size:2.5em; font-weight:700; background:linear-gradient(135deg,#00ff87 0%,#00d9ff 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:5px; }
-    .stat-label { color:rgba(255,255,255,.7); font-size:.95em; font-weight:500; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
-    @media (max-width:768px){
-      .agencies { grid-template-columns:1fr; }
-      h1 { font-size:1.8em; }
-      .header { flex-direction:column; gap:15px; }
-      .client-name { margin-right: 0; padding-right: 82px; }
-      .finance-btn { top: 12px; right: 12px; }
+    .stat-card {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(0, 255, 135, .15);
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: .3s;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #00ff87 0%, #00d9ff 100%);
+      transform: scaleX(0);
+      transition: transform .3s;
+    }
+
+    .stat-card:hover {
+      border-color: #00ff87;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 255, 135, .15);
+    }
+
+    .stat-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .stat-number {
+      font-size: 2.5em;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00ff87 0%, #00d9ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      color: rgba(255, 255, 255, .7);
+      font-size: .95em;
+      font-weight: 500;
+    }
+
+    @media (max-width:768px) {
+      .agencies {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
+
+      .header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .client-name {
+        margin-right: 0;
+        padding-right: 82px;
+      }
+
+      .finance-btn {
+        top: 12px;
+        right: 12px;
+      }
     }
   </style>
 </head>
+
 <body>
+
+  <script>
+    if (!sessionStorage.getItem('dash_auth') ||
+      prompt('🔒 Dashboard Privado\nSenha:') !== 'otavio2026') {
+      document.body.innerHTML = `
+    <div style="display:grid;place-items:center;height:100vh;background:#1e3a8a;color:white;text-align:center;padding:2rem">
+      <h1 style="font-size:3rem;margin:0">🔒 ACESSO NEGADO</h1>
+      <p style="font-size:1.2rem;margin:1rem 0">Painel de Gestão de Anúncios</p>
+      <p>Recarregue e digite a senha correta</p>
+    </div>
+  `;
+      throw new Error('Auth failed');
+    }
+    sessionStorage.setItem('dash_auth', 'ok');
+  </script>
+
+
   <div class="container" id="top">
     <div class="header">
       <a href="#top" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px">
@@ -136,17 +363,22 @@
       <div class="platform">
         <div class="platform-title">
           <svg class="platform-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/>
+            <path
+              d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+              fill="#4285F4" />
           </svg>
           Google Ads
         </div>
         <div class="clients">
-          <div class="client-card" onclick="window.open('https://ads.google.com/aw/campaigns?ocid=7536310508&ascid=7536310508&authuser=0&__u=9646446796&__c=3321549711','_blank')">
+          <div class="client-card"
+            onclick="window.open('https://ads.google.com/aw/campaigns?ocid=7536310508&ascid=7536310508&authuser=0&__u=9646446796&__c=3321549711','_blank')">
             <div class="client-name">RP3 Pneus</div>
           </div>
-          <div class="client-card" onclick="window.open('https://ads.google.com/aw/campaigns?ocid=635962468&ascid=635962468&authuser=0&__u=9646446796&__c=3321549711','_blank')">
+          <div class="client-card"
+            onclick="window.open('https://ads.google.com/aw/campaigns?ocid=635962468&ascid=635962468&authuser=0&__u=9646446796&__c=3321549711','_blank')">
             <div class="client-name">Umai</div>
-            <a class="finance-btn" target="_blank" href="https://ads.google.com/aw/billing/summary?ocid=635962468&euid=444386604&__u=9646446796&uscid=635962468&__c=3500875332&authuser=0">Financeiro</a>
+            <a class="finance-btn" target="_blank"
+              href="https://ads.google.com/aw/billing/summary?ocid=635962468&euid=444386604&__u=9646446796&uscid=635962468&__c=3500875332&authuser=0">Financeiro</a>
           </div>
         </div>
       </div>
@@ -154,14 +386,18 @@
       <div class="platform">
         <div class="platform-title">
           <svg class="platform-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
+            <path
+              d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+              fill="#1877F2" />
           </svg>
           Meta Ads
         </div>
         <div class="clients">
-          <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=973101746454637&business_id=1411444125863170&nav_entry_point=ads_ecosystem_navigation_menu&nav_source=ads_manager#','_blank')">
+          <div class="client-card"
+            onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=973101746454637&business_id=1411444125863170&nav_entry_point=ads_ecosystem_navigation_menu&nav_source=ads_manager#','_blank')">
             <div class="client-name">Ticle Imóveis</div>
-            <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1411444125863170&global_scope_id=1411444125863170&asset_id=23844966994650636&payment_account_id=973101746454637&placement=ads_manager">Financeiro</a>
+            <a class="finance-btn" target="_blank"
+              href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1411444125863170&global_scope_id=1411444125863170&asset_id=23844966994650636&payment_account_id=973101746454637&placement=ads_manager">Financeiro</a>
           </div>
         </div>
       </div>
@@ -185,25 +421,34 @@
           <div class="platform">
             <div class="platform-title">
               <svg class="platform-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/>
+                <path
+                  d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+                  fill="#4285F4" />
               </svg>
               Google Ads
             </div>
             <div class="clients">
-              <div class="client-card" onclick="window.open('https://ads.google.com/aw/overview?ocid=7585490548&euid=444386604&__u=9646446796&uscid=7585490548&__c=1674615252&authuser=0&workspaceId=0','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://ads.google.com/aw/overview?ocid=7585490548&euid=444386604&__u=9646446796&uscid=7585490548&__c=1674615252&authuser=0&workspaceId=0','_blank')">
                 <div class="client-name">Paulo Melo</div>
-                <a class="finance-btn" target="_blank" href="https://ads.google.com/aw/billing/summary?ocid=7585490548&euid=444386604&__u=9646446796&uscid=7585490548&__c=1674615252&authuser=0">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://ads.google.com/aw/billing/summary?ocid=7585490548&euid=444386604&__u=9646446796&uscid=7585490548&__c=1674615252&authuser=0">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://ads.google.com/aw/overview?ocid=126034724&euid=444386604&__u=9646446796&uscid=126034724&__c=5482300676&authuser=0&workspaceId=0','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://ads.google.com/aw/overview?ocid=126034724&euid=444386604&__u=9646446796&uscid=126034724&__c=5482300676&authuser=0&workspaceId=0','_blank')">
                 <div class="client-name">Brasil Verde</div>
               </div>
-              <div class="client-card" onclick="window.open('https://ads.google.com/aw/overview?ocid=7698497663&ascid=7698497663&authuser=0&__u=9646446796&__c=3321549711','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://ads.google.com/aw/overview?ocid=7698497663&ascid=7698497663&authuser=0&__u=9646446796&__c=3321549711','_blank')">
                 <div class="client-name">Casa Mansur</div>
-                <a class="finance-btn" target="_blank" href="https://ads.google.com/aw/billing/summary?ocid=7698497663&ascid=7698497663&authuser=0&__u=9646446796&__c=3321549711">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://ads.google.com/aw/billing/summary?ocid=7698497663&ascid=7698497663&authuser=0&__u=9646446796&__c=3321549711">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://ads.google.com/aw/overview?ocid=7716014591&ascid=7716014591&euid=444386604&__u=9646446796&uscid=636018439&__c=3321549711&authuser=0','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://ads.google.com/aw/overview?ocid=7716014591&ascid=7716014591&euid=444386604&__u=9646446796&uscid=636018439&__c=3321549711&authuser=0','_blank')">
                 <div class="client-name">Marcelo Pajaro</div>
-                <a class="finance-btn" target="_blank" href="https://ads.google.com/aw/billing/summary?ocid=7716014591&ascid=7716014591&euid=444386604&__u=9646446796&uscid=636018439&__c=3321549711&authuser=0">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://ads.google.com/aw/billing/summary?ocid=7716014591&ascid=7716014591&euid=444386604&__u=9646446796&uscid=636018439&__c=3321549711&authuser=0">Financeiro</a>
               </div>
             </div>
           </div>
@@ -211,34 +456,48 @@
           <div class="platform">
             <div class="platform-title">
               <svg class="platform-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  fill="#1877F2" />
               </svg>
               Meta Ads
             </div>
             <div class="clients">
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/adsets?act=1420112382470508&business_id=1830017724243978&global_scope_id=1830017724243978&date=2025-10-06_2025-10-17&insights_date=2025-10-06_2025-10-17&selected_adset_ids=120233975792260213','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/adsets?act=1420112382470508&business_id=1830017724243978&global_scope_id=1830017724243978&date=2025-10-06_2025-10-17&insights_date=2025-10-06_2025-10-17&selected_adset_ids=120233975792260213','_blank')">
                 <div class="client-name">AAX Esquadrias</div>
-                <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=1420112382470508&payment_account_id=1420112382470508&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=1420112382470508">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=1420112382470508&payment_account_id=1420112382470508&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=1420112382470508">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=1378990072316794&business_id=401534380782983&global_scope_id=401534380782983&date=2025-10-14_2025-10-17&insights_date=2025-10-14_2025-10-17&selected_campaign_ids=6838679171629&selected_adset_ids=6838679171229&selected_ad_ids=6845831598829','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=1378990072316794&business_id=401534380782983&global_scope_id=401534380782983&date=2025-10-14_2025-10-17&insights_date=2025-10-14_2025-10-17&selected_campaign_ids=6838679171629&selected_adset_ids=6838679171229&selected_ad_ids=6845831598829','_blank')">
                 <div class="client-name">Casa Mansur</div>
-                <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=1420112382470508&payment_account_id=1420112382470508&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=1420112382470508">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=1420112382470508&payment_account_id=1420112382470508&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=1420112382470508">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1830017724243978&business_id=1830017724243978&act=750365714479901&redirect_session_id=f5831c07-65b4-4fec-90a4-5d4d95938e2a','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1830017724243978&business_id=1830017724243978&act=750365714479901&redirect_session_id=f5831c07-65b4-4fec-90a4-5d4d95938e2a','_blank')">
                 <div class="client-name">Dr Fernando</div>
-                <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=750365714479901&payment_account_id=750365714479901&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=750365714479901">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=750365714479901&payment_account_id=750365714479901&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=750365714479901">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1830017724243978&business_id=1830017724243978&act=1162605015769178&redirect_session_id=ce541894-07b8-44bf-8a13-c17b88bf4150','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1830017724243978&business_id=1830017724243978&act=1162605015769178&redirect_session_id=ce541894-07b8-44bf-8a13-c17b88bf4150','_blank')">
                 <div class="client-name">Marcelo Pajaro</div>
-                <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=750365714479901&payment_account_id=750365714479901&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=750365714479901">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=750365714479901&payment_account_id=750365714479901&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=750365714479901">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1830017724243978&business_id=1830017724243978&act=599635706430078&redirect_session_id=de3c3d68-4b72-4cf0-b97b-d29e8eb854ca','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?global_scope_id=1830017724243978&business_id=1830017724243978&act=599635706430078&redirect_session_id=de3c3d68-4b72-4cf0-b97b-d29e8eb854ca','_blank')">
                 <div class="client-name">Esquadrind</div>
-                <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=599635706430078&payment_account_id=599635706430078&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=599635706430078">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1830017724243978&asset_id=599635706430078&payment_account_id=599635706430078&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=599635706430078">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=583509325425896&business_id=327885667072409&global_scope_id=327885667072409','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=583509325425896&business_id=327885667072409&global_scope_id=327885667072409','_blank')">
                 <div class="client-name">Remax</div>
-                <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?placement=ads_manager&asset_id=583509325425896&business_id=327885667072409&payment_account_id_from_jsmodule=583509325425896&payment_account_id=583509325425896&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://business.facebook.com/billing_hub/accounts/details/?placement=ads_manager&asset_id=583509325425896&business_id=327885667072409&payment_account_id_from_jsmodule=583509325425896&payment_account_id=583509325425896&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin">Financeiro</a>
               </div>
             </div>
           </div>
@@ -254,27 +513,37 @@
           <div class="platform">
             <div class="platform-title">
               <svg class="platform-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="#4285F4"/>
+                <path
+                  d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"
+                  fill="#4285F4" />
               </svg>
               Google Ads
             </div>
             <div class="clients">
-              <div class="client-card" onclick="window.open('https://ads.google.com/aw/overview?ocid=1223848936&ascid=1223848936&authuser=0&__u=9646446796&__c=3321549711','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://ads.google.com/aw/overview?ocid=1223848936&ascid=1223848936&authuser=0&__u=9646446796&__c=3321549711','_blank')">
                 <div class="client-name">Sermasa</div>
-                <a class="finance-btn" target="_blank" href="https://ads.google.com/aw/billing/summary?ocid=1223848936&ascid=1223848936&authuser=0&__u=9646446796&__c=3321549711">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://ads.google.com/aw/billing/summary?ocid=1223848936&ascid=1223848936&authuser=0&__u=9646446796&__c=3321549711">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://ads.google.com/aw/overview?ocid=288153507&ascid=288153507&authuser=0&__u=9646446796&__c=3321549711','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://ads.google.com/aw/overview?ocid=288153507&ascid=288153507&authuser=0&__u=9646446796&__c=3321549711','_blank')">
                 <div class="client-name">Imobfinder</div>
               </div>
-              <div class="client-card" onclick="window.open('https://ads.google.com/aw/overview?ocid=305679981&ascid=305679981&authuser=0&__u=9646446796&__c=3321549711','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://ads.google.com/aw/overview?ocid=305679981&ascid=305679981&authuser=0&__u=9646446796&__c=3321549711','_blank')">
                 <div class="client-name">Maxiar</div>
-                <a class="finance-btn" target="_blank" href="https://ads.google.com/aw/billing/summary?ocid=305679981&ascid=305679981&authuser=0&__u=9646446796&__c=3321549711">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://ads.google.com/aw/billing/summary?ocid=305679981&ascid=305679981&authuser=0&__u=9646446796&__c=3321549711">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://ads.google.com/aw/overview?ocid=408619385&euid=444386604&__u=9646446796&uscid=408619385&__c=2200282865&authuser=0&workspaceId=0','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://ads.google.com/aw/overview?ocid=408619385&euid=444386604&__u=9646446796&uscid=408619385&__c=2200282865&authuser=0&workspaceId=0','_blank')">
                 <div class="client-name">Timpany</div>
-                <a class="finance-btn" target="_blank" href="https://ads.google.com/aw/billing/summary?ocid=408619385&euid=444386604&__u=9646446796&uscid=408619385&__c=2200282865&authuser=0">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://ads.google.com/aw/billing/summary?ocid=408619385&euid=444386604&__u=9646446796&uscid=408619385&__c=2200282865&authuser=0">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://ads.google.com/aw/overview?ocid=1527123780&ascid=1527123780&authuser=0&__u=9646446796&__c=3321549711','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://ads.google.com/aw/overview?ocid=1527123780&ascid=1527123780&authuser=0&__u=9646446796&__c=3321549711','_blank')">
                 <div class="client-name">Probel</div>
               </div>
             </div>
@@ -283,25 +552,34 @@
           <div class="platform">
             <div class="platform-title">
               <svg class="platform-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="#1877F2"/>
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  fill="#1877F2" />
               </svg>
               Meta Ads
             </div>
             <div class="clients">
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/adsets?act=516127259291988&business_id=668407756888438&global_scope_id=668407756888438&nav_entry_point=am_local_scope_selector','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/adsets?act=516127259291988&business_id=668407756888438&global_scope_id=668407756888438&nav_entry_point=am_local_scope_selector','_blank')">
                 <div class="client-name">Lili</div>
-                <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?business_id=668407756888438&asset_id=516127259291988&payment_account_id=516127259291988&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=516127259291988">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://business.facebook.com/billing_hub/accounts/details/?business_id=668407756888438&asset_id=516127259291988&payment_account_id=516127259291988&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=516127259291988">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=381278262582987&business_id=133294881251259&global_scope_id=133294881251259','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=381278262582987&business_id=133294881251259&global_scope_id=133294881251259','_blank')">
                 <div class="client-name">Imobfinder</div>
               </div>
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=554840563333799&nav_entry_point=am_local_scope_selector&business_id=1398605707190803&global_scope_id=1398605707190803','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=554840563333799&nav_entry_point=am_local_scope_selector&business_id=1398605707190803&global_scope_id=1398605707190803','_blank')">
                 <div class="client-name">Maxiar</div>
-                <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1411444125863170&global_scope_id=1411444125863170&asset_id=23844966994650636&payment_account_id=973101746454637&placement=ads_manager">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://business.facebook.com/billing_hub/accounts/details/?business_id=1411444125863170&global_scope_id=1411444125863170&asset_id=23844966994650636&payment_account_id=973101746454637&placement=ads_manager">Financeiro</a>
               </div>
-              <div class="client-card" onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=187450502564184&nav_entry_point=am_local_scope_selector','_blank')">
+              <div class="client-card"
+                onclick="window.open('https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=187450502564184&nav_entry_point=am_local_scope_selector','_blank')">
                 <div class="client-name">Timpany</div>
-                <a class="finance-btn" target="_blank" href="https://business.facebook.com/billing_hub/accounts/details/?business_id=668407756888438&asset_id=516127259291988&payment_account_id=516127259291988&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=516127259291988">Financeiro</a>
+                <a class="finance-btn" target="_blank"
+                  href="https://business.facebook.com/billing_hub/accounts/details/?business_id=668407756888438&asset_id=516127259291988&payment_account_id=516127259291988&placement=ads_manager&entrypoint=ad_ecosystem_navigation_ads_billing_tool_plugin&payment_account_id_from_jsmodule=516127259291988">Financeiro</a>
               </div>
             </div>
           </div>
@@ -332,11 +610,15 @@
 
   <script>
     // Impede propagação do clique do botão de financeiro para o card
-    document.addEventListener('click', function(e){
-      if(e.target.closest('.finance-btn')) e.stopPropagation();
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.finance-btn')) e.stopPropagation();
     }, true);
   </script>
 
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"05a8551caa61465f87e1c8ddd3179f47","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+    integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+    data-cf-beacon='{"version":"2024.11.0","token":"05a8551caa61465f87e1c8ddd3179f47","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+    crossorigin="anonymous"></script>
 </body>
+
 </html>
