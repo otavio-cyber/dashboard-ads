@@ -326,20 +326,21 @@
 
 <body>
 
-  <script>
-    if (!sessionStorage.getItem('dash_auth') ||
-      prompt('🔒 Dashboard Privado\nSenha:') !== 'otavio2026') {
-      document.body.innerHTML = `
-    <div style="display:grid;place-items:center;height:100vh;background:#1e3a8a;color:white;text-align:center;padding:2rem">
+<script>
+if (!sessionStorage.getItem('dash_auth') || 
+    prompt('🔒 Dashboard Privado\nSenha:') !== 'otavio2026') {
+  document.documentElement.innerHTML = `
+    <html><head><title>Acesso Negado</title></head><body style="display:grid;place-items:center;height:100vh;background:#1e3a8a;color:white;text-align:center;padding:2rem;font-family:sans-serif">
       <h1 style="font-size:3rem;margin:0">🔒 ACESSO NEGADO</h1>
       <p style="font-size:1.2rem;margin:1rem 0">Painel de Gestão de Anúncios</p>
       <p>Recarregue e digite a senha correta</p>
-    </div>
+    </body></html>
   `;
-      throw new Error('Auth failed');
-    }
-    sessionStorage.setItem('dash_auth', 'ok');
-  </script>
+  throw new Error('Auth failed');
+}
+sessionStorage.setItem('dash_auth', 'ok');
+</script>
+
 
 
   <div class="container" id="top">
