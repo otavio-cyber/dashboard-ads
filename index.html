@@ -604,6 +604,56 @@
     data-cf-beacon='{"version":"2024.11.0","token":"05a8551caa61465f87e1c8ddd3179f47","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
     crossorigin="anonymous"></script>
 
-  </body>
+  <script>
+    (function () {
+      const senhaCorreta = "Fac163580";
+      const chaveSessao = "factorIA_auth_ok";
+
+      // se já autenticou nesta sessão, libera
+      if (sessionStorage.getItem(chaveSessao) === "true") return;
+
+      let tentativas = 0;
+      const maxTentativas = 3;
+
+      while (tentativas < maxTentativas) {
+        const senha = prompt("🔐 Acesso restrito\nDigite a senha:");
+
+        if (senha === null) {
+          document.body.innerHTML = "";
+          return;
+        }
+
+        if (senha === senhaCorreta) {
+          sessionStorage.setItem(chaveSessao, "true");
+          return;
+        }
+
+        tentativas++;
+        alert("❌ Senha incorreta");
+      }
+
+      // bloqueia após excesso de tentativas
+      document.body.innerHTML = `
+      <div style="
+        min-height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#0a1929;
+        color:#fff;
+        font-family:system-ui;
+        text-align:center;
+      ">
+        <div>
+          <h1 style="color:#00ff87">Acesso bloqueado</h1>
+          <p>Tentativas excedidas.</p>
+        </div>
+      </div>
+    `;
+    })();
+  </script>
+
+
+</body>
 
 </html>
